@@ -1,0 +1,27 @@
+pipeline{
+    agent {
+        node{
+            label 'tform'
+        }
+    }
+    stages{
+        stage('vcs'){
+            steps{
+                git url: 'https://github.com/Praveen-711/jentf.git',
+                branch: 'main'
+                
+            }
+        }
+        stage('terraform'){
+            steps{
+                sh  '''
+                    mkdir vpc
+                    terraform init
+                    terraform validate
+                    terraform apply -auto-approve
+                    
+                    '''
+            }
+        }
+    }
+}
