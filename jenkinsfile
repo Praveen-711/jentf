@@ -16,6 +16,7 @@ pipeline{
             steps{
                 sh  '''
                     mkdir vpc
+                    cd vpc/
                     terraform init
                     terraform validate
                     terraform apply -auto-approve
